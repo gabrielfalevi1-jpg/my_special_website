@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, My Love</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="confess.css">
+</head>
+<body>
+
+    <div class="floating-hearts-bg" id="floatingHeartsBg"></div>
+
+    <div id="page1" class="page active">
+        <a href="#page2" onclick="bukaHalaman('page2'); return false;" class="scalloped-badge-wrapper">
+            <svg class="scalloped-heart-svg" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>
+            <div class="my-love-text">MY<br>LOVE</div>
+        </a>
+        <p style="color: #ffcccc; margin-top: 30px; font-style: italic;">Click the Heart!</p>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="collage-container">
+            <div class="polaroid-layer">
+                <img src="asset/us.jpeg" alt="Foto Kita">
+                <div class="polaroid-sticker sticker-tag">Us, Always.</div>
+            </div>
+            <div class="question-card-wrapper">
+                <svg class="scalloped-paper-svg" viewBox="0 0 100 100">
+                    <path d="M 10 0 H 90 Q 100 0 100 10 V 90 Q 100 100 90 100 H 10 Q 0 100 0 90 V 10 Q 0 0 10 0 Z" />
+                </svg>
+                <div class="question-content">
+                    <h2>May I be your boyfriend?</h2>
+                    <button class="btn-link" onclick="bukaHalaman('page3'); return false;">SUPER YES!</button>
+                    <a href="#page3" class="btn-link" style="border-color:#C5A059; color:#C5A059;" onclick="bukaHalaman('page3'); return false;">YES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <p style="color: white; font-size: 24px; font-weight:bold; margin-bottom: 20px;">Remember This Moment?</p>
+        <div class="cards-layout">
+            <div class="date-card"><div class="card-blurry-heart"></div><img src="asset/s2.jpg" width="100%" height="100%" alt="">
+        <div class="caption-polaroid">20 SEPTEMBER 2025, RAMAYANA PAYAKUMBUH</div></div>
+            <div class="date-card"><div class="card-blurry-heart"></div><img src="asset/s3.jpg" width="100%" height="100%" alt="">
+        <div class="caption-polaroid">19 DESEMBER 2025, PAREWA COFFE PAYAKUMBUH</div></div>
+            <div class="date-card"><div class="card-blurry-heart"></div><img src="asset/s4.jpg" width="100%" height="100%" alt="">
+        <div class="caption-polaroid">22 DESEMBER 2025, KOTO BARU BALAI JANGGO</div></div>
+        </div>
+        <a href="#page-video" class="btn-link" style="width:auto; margin-top:30px; border-color:white; color:white;" onclick="bukaHalaman('page-video'); return false;">NEXT</a>
+    </div>
+
+    <div id="page-video" class="page">
+        <p style="color: white; font-size: 20px; margin-bottom: 20px; font-style: italic;">Our memories...</p>
+        <div class="video-wrapper">
+            <video id="myVideo" autoplay muted loop playsinline>
+                <source src="asset/memories.mp4" type="video/mp4">
+                Browser kamu tidak mendukung video tag.
+            </video>
+        </div>
+        <a href="#page4" class="btn-link" style="width:auto; margin-top:30px; border-color:white; color:white;" onclick="bukaHalaman('page4'); return false;">NEXT</a>
+    </div>
+
+    <div id="page4" class="page">
+        <div class="collage-letter-container">
+            <div class="torn-paper-wrapper letter-content">
+                <h2>LETTER TO YOU</h2>
+                <p>Sayangku,</p>
+                <p>Melihat semua momen di atas bikin aku sadar seberapa berartinya kehadiran kamu di hidup aku. Every single memory we shared selalu jadi bagian terbaik di hariku, and I’m genuinely so grateful for that.</p>
+                <p>Makasih ya udah selalu ada dan bikin hari-hari aku jauh lebih berwarna. Tapi aku juga mau minta maaf karena karena selama ini aku terkesan lambat dan malah bikin kamu nunggu tanpa kepastian. I’m really sorry for keeping you hanging for this long. karena aku beneran serius sama kamu.</p>
+                <p>So, will you be my girlfriend?</p>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 20px; text-align:right;">With Love,</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="btn-link" style="border-color:white; color:white;" onclick="accepted(); window.location.href='https://www.youtube.com';">YES, I WILL!❤ </button>
+            <a href="#page4" class="btn-link" style="border-color:white; color:white;" >NO, I WON'T😕</a>
+        </div>
+    </div>
+
+    <audio autoplay loop>
+            <source
+              src="asset/Dewa_19_-_Aku_Milikmu_I_m_Yours_(mp3.pm).mp3"
+              type="audio/mpeg"
+            />
+          </audio>
+
+    <script>
+        const heartsBgContainer = document.getElementById('floatingHeartsBg');
+        for (let i = 0; i < 12; i++) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.className = 'bg-heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 8 + 7) + 's';
+            heart.style.animationDelay = (Math.random() * 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heartsBgContainer.appendChild(heart);
+        }
+
+        // Script navigasi
+        function bukaHalaman(idTujuan) {
+            const semuaHalaman = document.querySelectorAll('.page');
+            semuaHalaman.forEach(halaman => {
+                halaman.classList.remove('active');
+            });
+            document.getElementById(idTujuan).classList.add('active');
+            window.scrollTo(0, 0); // Scroll ke atas saat pindah halaman
+        }
+
+        const video = document.getElementById('myVideo');
+            if(idTujuan === 'page-video') {
+                video.currentTime = 0;
+                video.play();
+            } else {
+                video.pause();
+            }
+        
+        
+
+        function accepted() {
+            alert("Yay! I'm so happy you said yes! ❤️");
+        }
+    </script>
+</body>
+</html>

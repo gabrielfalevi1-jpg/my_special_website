@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SPECIAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="envelope.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="instruction">Tap the Envelope</div>
+        
+        <div class="envelope-wrapper" id="envelope">
+            <div class="wax-seal"></div>
+            <div class="flap"></div>
+            
+            <div class="letter">
+                <h2>Special Message</h2>
+                <p><strong>From:</strong> Gabriel Braja Falevi</p>
+                <p><strong>To:</strong> Natania Mikha Sevelin</p>
+                <p>i have a special message for <you class=""></you>.🤍
+                    CLICK THE BUTTON BELOW❗❗💢
+                </p>
+                <a href="#" class="btn-click" id="btnSurprise">CLICK ME</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const btnSurprise = document.getElementById('btnSurprise');
+
+        // Menggunakan click event (masih paling stabil di mobile browser)
+        envelope.addEventListener('click', function() {
+            this.classList.toggle('open');
+        });
+
+btnSurprise.addEventListener('click', function(e) {
+    e.stopPropagation(); // Biar amplop gak nutup lagi
+    
+    // Mengarahkan ke halaman baru
+    window.location.href = "message.html"; 
+});
+    </script>
+</body>
+</html>

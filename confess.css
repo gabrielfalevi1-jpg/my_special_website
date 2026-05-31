@@ -1,0 +1,187 @@
+
+        :root {
+            --maroon: #7A1A21;
+            --cream: #F8E5D6;
+            --dark-brown: #4A2511;
+            --scallop-red: #E24C55;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--maroon);
+            font-family: 'Playfair Display', serif;
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navigasi Halaman */
+        .page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+            position: relative;
+        }
+        .page.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Latar Belakang Animasi */
+        .floating-hearts-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .bg-heart {
+            position: absolute; color: rgba(255, 100, 100, 0.2);
+            font-size: 30px; animation: floatUp 15s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* --- HALAMAN 1 --- */
+        /* Perbaikan Tombol Hati agar 100% bisa diklik */
+        .scalloped-badge-wrapper {
+            position: relative;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            z-index: 999; /* Memastikan tombol berada paling depan */
+            display: block;
+            text-decoration: none; /* Menghilangkan garis bawah pada link */
+            transition: transform 0.3s ease;
+        }
+        .scalloped-badge-wrapper:active {
+            transform: scale(0.95); /* Efek saat ditekan di HP */
+        }
+        
+        .scalloped-heart-svg {
+            width: 320px; height: 320px;
+            fill: var(--scallop-red);
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+        }
+        .my-love-text {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;  font-family: 'Dancing Script', cursive; font-size: 36px; font-weight: bold;
+            line-height: 1.1; text-align: center;
+        }
+        
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* --- HALAMAN 2 --- */
+        .collage-container {
+            display: flex; gap: 40px; align-items: center; justify-content: center;
+            max-width: 1000px; width: 100%; position: relative;
+        }
+        .polaroid-layer {
+            background: white; padding: 15px 15px 50px 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            transform: rotate(-7deg); width: 280px; position: relative; z-index: 1;
+        }
+        .polaroid-layer img { width: 100%; height: 260px; object-fit: cover; }
+        .polaroid-sticker { position: absolute; font-size: 30px; }
+        .sticker-flower { top: -15px; left: -15px; color: #ffaaaa; }
+        .sticker-tag { bottom: -15px; right: 20px; color: var(--dark-brown); font-family: 'sans-serif'; font-size: 14px; background: #e0d5c1; padding: 2px 8px; }
+
+        .question-card-wrapper { position: relative; z-index: 0; transform: rotate(5deg); }
+        .scalloped-paper-svg { width: 380px; height: 380px; fill: var(--cream); filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4)); }
+        .question-content {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 80%; text-align: center;
+        }
+        .question-content h2 {
+            font-family: 'Great Vibes', cursive; font-size: 45px;
+            color: var(--dark-brown); margin-bottom: 25px; line-height: 1.1;
+        }
+        
+        /* Tombol Link Teks */
+        .btn-link {
+            display: inline-block;
+            background-color: transparent; border: 2px solid var(--dark-brown);
+            color: var(--dark-brown); padding: 10px 25px; font-family: 'Playfair Display', serif;
+            font-size: 20px; font-weight: bold; border-radius: 25px;
+            cursor: pointer; transition: all 0.3s; margin: 5px; width: 90%;
+            text-decoration: none;
+        }
+        .btn-link:hover { background-color: var(--dark-brown); color: var(--cream); }
+
+        /* Button Container - Buttons Side by Side */
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .button-container .btn-link {
+            width: auto;
+            padding: 10px 30px;
+            white-space: nowrap;
+        }
+
+        /* --- HALAMAN 3 --- */
+        .cards-layout {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            max-width: 900px; width: 100%; text-align: center; margin-top: 30px;
+            
+        }
+        .date-card {
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .date-card h3 { font-family: 'sans-serif'; font-size: 64px; color: var(--dark-brown); z-index: 1; margin: 0; }
+        .card-blurry-heart {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 150%; height: 150%; background-color: rgba(226, 76, 85, 0.15); border-radius: 50%;
+            filter: blur(40px); z-index: 0;
+        }
+
+        .caption-polaroid {
+            margin-top: 10px; background: white; padding: 5px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-size: 14px;
+            font-family: 'sans-serif'; color: var(--dark-brown);
+        }
+
+        /* --- HALAMAN 4 --- */
+        .video-wrapper {
+            width: 100%;
+            max-width: 700px; /* Ukuran pas di HP Android */
+            border: 8px solid white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            background: black;
+        }
+        video { width: 100%; display: block; }
+
+        /* --- HALAMAN 4 --- */
+        .collage-letter-container {
+            position: relative; max-width: 900px; width: 100%;
+            display: flex; gap: 30px; align-items: center; flex-wrap: wrap; justify-content: center;
+        }
+        .torn-paper-wrapper {
+            background-color: var(--cream); padding: 40px; border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 550px; width: 100%; position: relative; z-index: 1;
+        }
+        .letter-content h2 { font-family: 'Cinzel', serif; font-size: 24px; color: var(--dark-brown); text-align: center; margin-bottom: 20px; }
+        .letter-content p { font-size: 16px; line-height: 1.8; color: var(--dark-brown); font-style: italic; margin-bottom: 15px; }
+
+        /* Responsivitas Layar HP */
+        @media (max-width: 992px) {
+            .collage-container { flex-direction: column; gap: 20px; }
+            .polaroid-layer { width: 100%; max-width: 300px; transform: rotate(-2deg); margin-bottom: 10px; }
+            .question-card-wrapper { transform: rotate(0deg); width: 100%; max-width: 350px; }
+            .scalloped-paper-svg { width: 100%; height: auto; aspect-ratio: 1; }
+            .cards-layout { grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 10px; }
+            .date-card h3 { font-size: 48px; }
+            .collage-letter-container { flex-direction: column; gap: 20px; text-align: center; }
+            .torn-paper-wrapper { width: 100%; max-width: 100%; padding: 25px; }
+        }
