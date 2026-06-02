@@ -77,20 +77,24 @@
                 <p style="font-family: 'Great Vibes', cursive; font-size: 20px; text-align:right;">With Love,</p>
             </div>
         </div>
+        
+        <!-- Bagian Tombol yang Sudah Diubah -->
         <div class="button-container">
-            <button class="btn-link" style="border-color:white; color:white;" onclick="accepted(); window.location.href='https://www.youtube.com';">YES, I WILL!❤ </button>
-            <a href="#page4" class="btn-link" style="border-color:white; color:white;" >NO, I WON'T😕</a>
+            <!-- Tombol sekarang memanggil fungsi kirimJawaban -->
+            <button class="btn-link" style="border-color:white; color:white;" onclick="kirimJawaban('YES')">YES, I WILL!❤ </button>
+            <button class="btn-link" style="border-color:white; color:white;" onclick="kirimJawaban('NO')">NO, I WON'T😕</button>
         </div>
+        
+        <!-- Indikator Status Pengiriman -->
+        <p id="statusKirim" style="color: white; font-size: 14px; margin-top: 15px; display: none; text-align: center; font-style: italic;"></p>
     </div>
 
-    <audio autoplay loop>
-            <source
-              src="asset/Dewa_19_-_Aku_Milikmu_I_m_Yours_(mp3.pm).mp3"
-              type="audio/mpeg"
-            />
-          </audio>
-
+   <audio autoplay loop>
+        <source src="asset/Dewa_19_-_Aku_Milikmu_I_m_Yours_(mp3.pm).mp3" type="audio/mpeg" />
+   </audio>
+ 
     <script>
+        // Efek Background Love
         const heartsBgContainer = document.getElementById('floatingHeartsBg');
         for (let i = 0; i < 12; i++) {
             const heart = document.createElement('div');
@@ -103,29 +107,69 @@
             heartsBgContainer.appendChild(heart);
         }
 
-        // Script navigasi
+        // Script Navigasi Halaman
         function bukaHalaman(idTujuan) {
             const semuaHalaman = document.querySelectorAll('.page');
             semuaHalaman.forEach(halaman => {
                 halaman.classList.remove('active');
             });
             document.getElementById(idTujuan).classList.add('active');
-            window.scrollTo(0, 0); // Scroll ke atas saat pindah halaman
-        }
+            window.scrollTo(0, 0); 
 
-        const video = document.getElementById('myVideo');
-            if(idTujuan === 'page-video') {
+            const video = document.getElementById('myVideo');
+            const audio = document.getElementById('page4Audio');
+
+            if (idTujuan === 'page-video') {
                 video.currentTime = 0;
                 video.play();
             } else {
                 video.pause();
             }
-        
-        
 
-        function accepted() {
-            alert("Yay! I'm so happy you said yes! ❤️");
+            if (idTujuan === 'page4') {
+                audio.currentTime = 0;
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        // Script Integrasi Web3Forms untuk Tombol Yes/No
+        function kirimJawaban(pilihan) {
+            const statusTeks = document.getElementById('statusKirim');
+            statusTeks.style.display = 'block';
+            statusTeks.innerText = 'Tunggu sebentar...';
+
+            // Menyusun data form di balik layar
+            const formData = new FormData();
+            formData.append('access_key', '8b857247-90f9-4b56-a2a0-110c400efc1e'); 
+            formData.append('Jawaban_Si_Dia', pilihan);
+
+            // Proses kirim ke API
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusTeks.style.display = 'none'; // Sembunyikan teks loading
+                    
+                    // Eksekusi Pop Up sesuai pilihan
+                    if(pilihan === 'YES') {
+                        alert("Yay! I'm so happy you said yes! ❤️");
+                    } else {
+                        alert("Aww, that's okay. I understand. 😔");
+                    }
+                } else {
+                    statusTeks.innerText = 'Ada gangguan saat mengirim jawaban. Coba klik lagi.';
+                }
+            })
+            .catch(error => {
+                statusTeks.innerText = 'Gagal mengirim. Periksa koneksi internet.';
+            });
         }
     </script>
 </body>
 </html>
+
+```
